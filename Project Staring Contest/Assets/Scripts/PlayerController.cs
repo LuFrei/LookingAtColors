@@ -36,7 +36,14 @@ public class PlayerController : MonoBehaviour
 		transform.Rotate(Vector2.up * lookVector.y * lookSensitivity);  //roate body left and right
 
 		//Camera x rot Limits
-		Mathf.Clamp(camera.rotation.x, -90, 90);
-		
+		if(camera.rotation.eulerAngles.x > 90 && camera.rotation.eulerAngles.x < 180)
+		{
+			camera.localEulerAngles = new Vector3(90, 0, 0);
+		}
+		if (camera.rotation.eulerAngles.x > 180 && camera.rotation.eulerAngles.x < 270)
+		{
+			camera.localEulerAngles = new Vector3(270, 0, 0);
+		}
+		Debug.Log("camera x: " + camera.rotation.eulerAngles.x + "camera y: " + camera.rotation.eulerAngles.y + "camera z: " + camera.rotation.eulerAngles.z);
 	}
 }
